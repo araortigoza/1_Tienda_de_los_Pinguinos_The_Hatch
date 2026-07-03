@@ -17,7 +17,7 @@ const orderSchema = new mongoose.Schema({
         {
             productId: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Product",
+                ref: "Product"
             },
             productname: {
                 type: String,
@@ -34,13 +34,18 @@ const orderSchema = new mongoose.Schema({
             total: {
                 type: Number,
                 required: true
-            },
-        },
+            }
+        }
     ],
     orderTotal: {
         type: Number,
         required: true
     },
+    status: {
+        type: String,
+        required: true,
+        default: "pending"
+    }
 });
 
 module.exports = mongoose.model("Order", orderSchema);
