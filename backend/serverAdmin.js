@@ -1,26 +1,31 @@
 const express = require("express");
-const rutas = require("./routers/router");
+const session = require("express-session");
 const path = require("path");
-const cookieParser = require("cookie-parser");
+const router = require("./routers/router");
 
-require("./middlewares/database")
+require("./middlewares/database");
 
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}))
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use(session({
+    secret: "clubpenguinsecret",
+    resave: false,
+    saveUninitialized: false
+}));
 
 app.set("view engine", "pug");
-app.set("views", (path.join__dirname, 'views'));
+app.set("views", path.join(__dirname, "views"));
 
-app.use("/login", rutas);
-app.use("/dashborard", rutas);
+app.use("/", router);
 
 app.get("/", (req, res) => {
-    res.render("login");
+    res.redirect("/login");
 });
 
 app.listen(5000, () => {
-    console.log("Servidor activo en http://localhost:5000");
+    console.log("Servidor de administracion activo en http://localhost:5000");
 });
