@@ -1,0 +1,73 @@
+doctype html
+html(lang="es")
+    head
+        title Club Penguin Admin - Dashboard
+        link(rel="stylesheet" href="/css/style.css")
+    body
+        header
+            h1 Panel de Administracion
+            a(href="/logout") Cerrar sesion
+
+        section.products-section
+            h2 Productos
+            form(action="/dashboard/products/create" method="POST" enctype="multipart/form-data")
+                input(type="text" name="productname" placeholder="Nombre" required)
+                input(type="number" name="price" placeholder="Precio" step="0.01" required)
+                input(type="number" name="stock" placeholder="Stock" required)
+                input(type="file" name="image" accept="image/*" required)
+                button(type="submit") Agregar producto
+
+            table
+                thead
+                    tr
+                        th Imagen
+                        th Nombre
+                        th Precio
+                        th Stock
+                        th Acciones
+                tbody
+                    each product in products
+                        tr
+                            td
+                                img.product-thumb(src="/uploads/" + product.image alt=product.productname)
+                            td= product.productname
+                            td= product.price
+                            td= product.stock
+                            td
+                                form(action="/dashboard/products/edit/" + product._id method="POST" enctype="multipart/form-data")
+                                    input(type="text" name="productname" value=product.productname required)
+                                    input(type="number" name="price" value=product.price step="0.01" required)
+                                    input(type="number" name="stock" value=product.stock required)
+                                    input(type="file" name="image" accept="image/*")
+                                    button(type="submit") Guardar
+                                form(action="/dashboard/products/delete/" + product._id method="POST")
+                                    button(type="submit") Eliminar
+
+        section.orders-section
+            h2 Pedidos
+            table
+                thead
+                    tr
+                        th Cliente
+                        th Direccion
+                        th Telefono
+                        th Productos
+                        th Total
+                        th Estado
+                tbody
+                    each order in orders
+                        tr
+                            td= order.name
+                            td= order.address
+                            td= order.phonenumber
+                            td
+                                ul
+                                    each item in order.products
+                                        li= item.productname + " x" + item.quantity
+                            td= order.orderTotal
+                            td
+                                form(action="/dashboard/orders/status/" + order._id method="POST")
+                                    select(name="status")
+                                        option(value="pending" selected=order.status === "pending") Pendiente
+                                        option(value="delivered" selected=order.status === "delivered") Entregado
+                                    button(type="submit") Actualizar
