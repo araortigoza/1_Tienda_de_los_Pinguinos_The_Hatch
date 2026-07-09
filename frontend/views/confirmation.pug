@@ -1,0 +1,25 @@
+doctype html
+html(lang="es")
+    head
+        title Pedido Confirmado - Tienda de los Pinguinos
+        link(rel="stylesheet" href="/css/style.css")
+    body
+        .confirmation-container
+            h1 Pedido Confirmado
+            p Gracias #{order.name}, tu pedido va en camino a #{order.address}
+
+            table
+                thead
+                    tr
+                        th Producto
+                        th Cantidad
+                        th Subtotal
+                tbody
+                    each item in order.products
+                        tr
+                            td= item.productname
+                            td= item.quantity
+                            td $ #{item.total}
+            p.cart-total Total: $ #{order.orderTotal}
+
+            a(href="/store") Volver a la tienda
