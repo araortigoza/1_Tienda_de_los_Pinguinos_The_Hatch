@@ -1,0 +1,32 @@
+doctype html
+html(lang="es")
+    head
+        title Tienda de los Pinguinos
+        link(rel="stylesheet" href="/css/style.css")
+    body
+        header
+            h1 Tienda de los Pinguinos
+            a(href="/cart") Ver carrito
+
+        section.puffles-section
+            h2 Adopta un Puffle
+            .products-grid
+                each puffle in puffles
+                    .product-card
+                        img(src="/uploads/" + puffle.image alt=puffle.productname)
+                        h3= puffle.productname
+                        p Gratis
+                        form(action="/cart/add/" + puffle._id method="POST")
+                            button(type="submit") Adoptar
+
+        section.food-section
+            h2 Puffle Food
+            .products-grid
+                each item in food
+                    .product-card
+                        img(src="/uploads/" + item.image alt=item.productname)
+                        h3= item.productname
+                        p $ #{item.price}
+                        form(action="/cart/add/" + item._id method="POST")
+                            input(type="number" name="quantity" value="1" min="1" required)
+                            button(type="submit") Agregar al carrito
