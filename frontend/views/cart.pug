@@ -1,0 +1,38 @@
+doctype html
+html(lang="es")
+    head
+        title Carrito - Tienda de los Pinguinos
+        link(rel="stylesheet" href="/css/style.css")
+    body
+        header
+            h1 Tu Carrito
+            a(href="/store") Seguir comprando
+
+        section.cart-section
+            if cart.length === 0
+                p El carrito esta vacio
+            else
+                table
+                    thead
+                        tr
+                            th Producto
+                            th Cantidad
+                            th Precio
+                            th Subtotal
+                    tbody
+                        each item in cart
+                            tr
+                                td= item.productname
+                                td= item.quantity
+                                td $ #{item.price}
+                                td $ #{item.total}
+                p.cart-total Total: $ #{cartTotal}
+
+                form(action="/checkout" method="POST")
+                    label(for="name") Nombre
+                    input(type="text" id="name" name="name" required)
+                    label(for="address") Direccion del iglu
+                    input(type="text" id="address" name="address" required)
+                    label(for="phonenumber") Telefono
+                    input(type="number" id="phonenumber" name="phonenumber" required)
+                    button(type="submit") Confirmar pedido
