@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// SE ESCUCTURA LA COLECCION DE ORDENES
 const orderSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -48,4 +49,5 @@ const orderSchema = new mongoose.Schema({
     }
 });
 
+// SE EXPORTA Y SE CREA EL MODELO FUNCIONAR DE ORDEN
 module.exports = mongoose.model("Order", orderSchema);
