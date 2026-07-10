@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); // SE IMPORTA MONGOOSE
 
+// // SE CREA LA ESTRUCTURA DE UNA COLECCION EN LA DB CON SUB CONJUNTO
 const orderSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -48,4 +49,5 @@ const orderSchema = new mongoose.Schema({
     }
 });
 
+// SE EXPORTA LA COLECCION Y SE CREA EL MODELO FUNCIONAL DE ORDER
 module.exports = mongoose.model("Order", orderSchema);
