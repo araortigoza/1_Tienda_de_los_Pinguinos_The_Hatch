@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "..", "backend", "public", "uploads")));
 
 app.use(session({
+    name: "store.sid",
     secret: "clubpenguinstoresecret",
     resave: false,
     saveUninitialized: false
