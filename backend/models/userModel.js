@@ -1,5 +1,6 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose") // SE IMPORTA MONGOOSE
 
+// SE CREA LA ESTRUCTURA DE UNA COLECCION EN LA DB
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -16,4 +17,5 @@ const userSchema = new mongoose.Schema({
     },
 });
 
+// SE EXPORTA LA COLECCION Y SE CREA EL MODELO FUNCIONAL DE USER
 module.exports = mongoose.model('User', userSchema)
