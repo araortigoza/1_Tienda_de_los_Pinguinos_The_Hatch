@@ -10,7 +10,7 @@ html(lang="es")
 
         section.products-section
             h2 Productos
-            form(action="/dashboard/products/create" method="POST" enctype="multipart/form-data")
+            form(action="/dashboard/products" method="POST" enctype="multipart/form-data")
                 input(type="text" name="productname" placeholder="Nombre" required)
                 input(type="number" name="price" placeholder="Precio" step="0.01" required)
                 input(type="number" name="stock" placeholder="Stock" required)
@@ -34,13 +34,13 @@ html(lang="es")
                             td= product.price
                             td= product.stock
                             td
-                                form(action="/dashboard/products/edit/" + product._id method="POST" enctype="multipart/form-data")
+                                form(action="/dashboard/products/" + product._id + "?_method=PUT" method="POST" enctype="multipart/form-data")
                                     input(type="text" name="productname" value=product.productname required)
                                     input(type="number" name="price" value=product.price step="0.01" required)
                                     input(type="number" name="stock" value=product.stock required)
                                     input(type="file" name="image" accept="image/*")
                                     button(type="submit") Guardar
-                                form(action="/dashboard/products/delete/" + product._id method="POST")
+                                form(action="/dashboard/products/" + product._id + "?_method=DELETE" method="POST")
                                     button(type="submit") Eliminar
 
         section.orders-section
@@ -66,7 +66,7 @@ html(lang="es")
                                         li= item.productname + " x" + item.quantity
                             td= order.orderTotal
                             td
-                                form(action="/dashboard/orders/status/" + order._id method="POST")
+                                form(action="/dashboard/orders/" + order._id + "?_method=PUT" method="POST")
                                     select(name="status")
                                         option(value="pending" selected=order.status === "pending") Pendiente
                                         option(value="delivered" selected=order.status === "delivered") Entregado
