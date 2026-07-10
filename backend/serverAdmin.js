@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(session({
+    name: "admin.sid",
     secret: "clubpenguinsecret",
     resave: false,
     saveUninitialized: false
