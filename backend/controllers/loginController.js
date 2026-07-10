@@ -1,10 +1,12 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 
+// MUESTRA EL LOGIN
 async function showLogin(req, res) {
     res.render("login");
 }
 
+// SE VERIFICAN EL NOMBRE DEL ADMIN Y CONTRASENA
 async function login(req, res) {
     const { username, password } = req.body;
 
@@ -24,10 +26,12 @@ async function login(req, res) {
     res.redirect("/dashboard");
 }
 
+// CIERRA LA SESION DEL ADMIN
 function logout(req, res) {
     req.session.destroy(() => {
         res.redirect("/login");
     });
 }
 
+// SE EXPORTAN LAS FUNCIONES
 module.exports = { showLogin, login, logout };
