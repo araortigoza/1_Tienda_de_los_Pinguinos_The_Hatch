@@ -1,3 +1,4 @@
+// MIDDLEWARE SE SEGURIDAD
 function checkAuth(req, res, next) {
     if (req.session.user) {
         next();
