@@ -1,5 +1,6 @@
 const express = require("express"); // SE IMPORTA EL FRAMEWORK A UTILIZAR 
 const session = require("express-session"); // SE IMPORTA UN MIDDLEWARE PARA MANEJO DE SESIONES
+const methodOverride = require("method-override");
 const path = require("path"); // SE IMPORTA PATH PARA MANEJO DE RUTAS DE ARCHIVOS
 const router = require("./routers/router"); // SE IMPORTA EL ROUTER DE OTRO ARCHIVO
 
@@ -13,6 +14,13 @@ const app = express();
 app.use(express.json()); // SE CONVIERTE LO QUE LLEGA DE FETCH (JSON) A UN OBJETO JAVASCRIPT
 app.use(express.urlencoded({ extended: true })); // SE CONVIERTE A UN OBJETO JAVASCRIPT LO QUE VIENE DE LOS FORMULARIOS
 app.use(express.static(path.join(__dirname, "public"))); // SE LE COMUNICA AL SERVIDOR QUE EL NAVEGADOR PUEDE ACCEDER A LOS ARCHIVOS DENTRO DE LA CARPETA 'public'
+
+// DEFINE QUE EL MIDDLEWARE SAQUE EN METODO DE LA URL
+app.use(methodOverride((req, res) => {
+    if (req.query && "_method" in req.query) {
+        return req.query._method;
+    }
+}));
 
 // SE CONFIGURA LA SESSION
 app.use(session({
