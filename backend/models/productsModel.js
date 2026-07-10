@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); // SE IMPORTA MONGOOSE
 
+// SE CREA LA ESTRUCTURA DE UNA COLECCION EN LA DB
 const productSchema = new mongoose.Schema({
     productname: {
         type: String,
@@ -21,4 +22,5 @@ const productSchema = new mongoose.Schema({
     }
 });
 
+// SE EXPORTA LA COLECCION Y SE CREA EL MODELO FUNCIONAL DE PRODUCTS
 module.exports = mongoose.model("Product", productSchema);
