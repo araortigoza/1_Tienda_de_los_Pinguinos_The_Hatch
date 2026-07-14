@@ -1,11 +1,13 @@
 const Product = require("../models/productsModel");
 const Order = require("../models/orderModel");
+const Comment = require("../models/commentsModel")
 
 // MUESTRA EN EL DASHBOARD TODOS LOS PRODUCTOS Y ORDENES
 async function showDashboard(req, res) {
     const products = await Product.find();
     const orders = await Order.find();
-    res.render("dashboard", { products: products, orders: orders });
+    const comments = await Comment.find();
+    res.render("dashboard", { products: products, orders: orders, comments: comments });
 }
 
 // CREA UN NUEVO PRODUCTO EN LA BASE DE DATOS
