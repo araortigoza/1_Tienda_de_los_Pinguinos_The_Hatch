@@ -30,3 +30,9 @@ html(lang="es")
                         form(action="/cart/add/" + item._id method="POST")
                             input(type="number" name="quantity" value="1" min="1" required)
                             button(type="submit") Agregar al carrito
+        
+        section.comments-seccion
+            h2 Agrega un Comentario
+            form(action="/store/comments/add" method="POST")
+                input(type="text" name="usercomment" placeholder="Comentario")
+                button(type="submit") Agregar comentario
