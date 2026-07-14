@@ -166,3 +166,28 @@ th {
     text-decoration: none;
     font-weight: bold;
 }
+
+.comments-seccion {
+    background-color: #ffffff;
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #b8e2ff;
+}
+
+.comments-seccion h2 {
+    color: #0077c8;
+    margin-bottom: 20px;
+}
+
+.comments-seccion form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.comments-seccion input {
+    flex: 1;
+    min-width: 200px;
+}
