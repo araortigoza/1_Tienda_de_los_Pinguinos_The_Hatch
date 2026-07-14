@@ -71,3 +71,11 @@ html(lang="es")
                                         option(value="pending" selected=order.status === "pending") Pendiente
                                         option(value="delivered" selected=order.status === "delivered") Entregado
                                     button(type="submit") Actualizar
+
+        section.comments-section
+            h2 Comentarios de Usuarios
+            ul
+                tbody
+                    each comment in comments
+                        tr
+                            li= comment.usercomment
