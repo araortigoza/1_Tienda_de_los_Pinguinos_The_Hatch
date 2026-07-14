@@ -9,6 +9,7 @@ router.get("/store", storeController.showStore);
 router.post("/cart/add/:id", storeController.addToCart);
 router.get("/cart", storeController.showCart);
 router.post("/checkout", storeController.checkout);
+router.post("/store/comments/add", storeController.addToComment)
 
 // SE EXPORTAN LAS RUTAS
 module.exports = router;
