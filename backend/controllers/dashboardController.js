@@ -2,7 +2,7 @@ const Product = require("../models/productsModel");
 const Order = require("../models/orderModel");
 const Comment = require("../models/commentsModel")
 
-// MUESTRA EN EL DASHBOARD TODOS LOS PRODUCTOS Y ORDENES
+// MUESTRA EN EL DASHBOARD TODOS LOS PRODUCTOS, ORDENES Y COMENTARIOS
 async function showDashboard(req, res) {
     const products = await Product.find();
     const orders = await Order.find();
