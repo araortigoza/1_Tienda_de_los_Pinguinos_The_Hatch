@@ -1,5 +1,6 @@
 const Product = require("../models/productsModel");
 const Order = require("../models/orderModel");
+const Comment = require("../models/commentsModel");
 
 // MUESTRA LOS PRODUCTOS DE LA TIENDA
 async function showStore(req, res) {
@@ -65,5 +66,17 @@ async function checkout(req, res) {
     res.render("confirmation", { order: newOrder });
 }
 
+async function addToComment(req, res) {
+    const { usercomment } = req.body
+
+    const newComment = new Comment({
+        usercomment: usercomment
+    });
+
+    await newComment.save();
+    
+    res.redirect("/store");
+}
+
 // SE EXPORTA LAS FUNCIONES
-module.exports = { showStore, addToCart, showCart, checkout };
+module.exports = { showStore, addToCart, showCart, checkout, addToComment };
