@@ -33,6 +33,23 @@ async function addToCart(req, res) {
     res.redirect("/store");
 }
 
+// ELIMINA PRODUCTOS DEL CARRITO
+async function deleteToCart(req, res) {
+    const { id } = req.params;
+
+    const product = await Product.findById(id);
+
+    if (!req.session.cart) {
+        req.session.cart = [];
+    }
+
+    req.session.cart = req.session.cart.filter(product => product.productId !== id);
+
+    req.session.save()
+
+    res.redirect("/cart");
+}
+
 // MUESTRA EL CARRITO
 async function showCart(req, res) {
     const cart = req.session.cart || [];
@@ -66,6 +83,7 @@ async function checkout(req, res) {
     res.render("confirmation", { order: newOrder });
 }
 
+// ENVIA COMENTARIOS AL PANEL ADMINISTRADOR
 async function addToComment(req, res) {
     const { usercomment } = req.body
 
@@ -79,4 +97,4 @@ async function addToComment(req, res) {
 }
 
 // SE EXPORTA LAS FUNCIONES
-module.exports = { showStore, addToCart, showCart, checkout, addToComment };
+module.exports = { showStore, addToCart, showCart, checkout, addToComment, deleteToCart };
