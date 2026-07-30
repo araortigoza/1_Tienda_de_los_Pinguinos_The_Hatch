@@ -26,6 +26,10 @@ html(lang="es")
                                 td= item.quantity
                                 td $ #{item.price}
                                 td $ #{item.total}
+                            td
+                                form(action="/cart/delete/" + item.productId method="POST")
+                                    button(type="submit") Eliminar
+
                 p.cart-total Total: $ #{cartTotal}
 
                 form(action="/checkout" method="POST")
